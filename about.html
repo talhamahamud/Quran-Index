@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="koran.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>বিষয় ভিত্তিক আয়াত</title>
+  </head>
+  <body>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navbar">
+      <header>বিষয় ভিত্তিক আয়াত</header>
+      <div class="subheader">
+        <a href="/about.html">About</a>
+      </div>
+      <ul>
+        <li><a class="link" href="index.html">জান্নাতের বর্ননা</a></li>
+        <li>
+          <a class="link" href="pages/jhannam.html">জাহান্নামের বর্ণনা</a>
+        </li>
+        <li>
+          <a class="link" href="/pages/mumin.html">মুমিনদের বৈশিষ্ট্য</a>
+        </li>
+        <li><a class="link" href="/pages/ashar-bani.html">আশার বানী</a></li>
+        <li>
+          <a class="link" href="/pages/voy-siristhikari-ayat.html"
+            >ভয় সৃষ্টিকারী আয়াত</a
+          >
+        </li>
+        <li><a class="link" href="/pages/adam.html">আদাম(আ:) </a></li>
+        <li><a class="link" href="/pages/lut.html">লূত(আঃ)</a></li>
+        <li><a class="link" href="/pages/jakaria.html">যাকারিয়া(আঃ) </a></li>
+        <li><a class="link" href="pages/maryam.html">মারয়াম(আঃ)</a></li>
+        <li><a class="link" href="/pages/ibrahim.html">ইব্রাহিম(আঃ)</a></li>
+        <li><a class="link" href="/pages/musa.html">মূসা(আ:)</a></li>
+        <li><a class="link" href="/pages/dua.html">দোয়া</a></li>
+        <li><a class="link" href="/pages/nuh.html">নূহ(আঃ)</a></li>
+        <li><a class="link" href="/pages/updesh.html">উপদেশ</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <!-------------------------------------------copy this------------------------------------------------------->
+      <section class="main-section" id="Introduction">
+        <header>About This Project</header>
+        <article>
+          <div class="ayat">
+            <p>
+              This website was born from a personal journey of reading and
+              reflecting on the Qur’an.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              While studying <i>Tafheem-ul-Qur’an</i> (tafsir by Abul A‘la
+              Maududi), I often felt the need to see Qur’anic verses organized
+              subject-wise across different surahs. Many themes—such as Jannat,
+              about the prophets, guidance, warnings, and mercy etc.—appear
+              throughout the Qur’an, but finding them together in one place can
+              be difficult for readers.
+            </p>
+            <div style="height: 16px"></div>
+            <p>From this need, the idea for this project came to my mind.</p>
+            <div style="height: 16px"></div>
+            <p>
+              I began carefully listing Qur’anic ayat by subject, while also
+              keeping them connected to their respective surahs, so that readers
+              can navigate easily and reflect more deeply on each topic. This
+              project is meant to help students, researchers, and general
+              readers engage with the Qur’an in a more structured and meaningful
+              way.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              This is a continuous and evolving effort, and I am fully aware
+              that mistakes or limitations may exist. If you notice any error,
+              misclassification, or have suggestions for improvement, I
+              sincerely encourage you to contact me through the provided contact
+              information. Your feedback will help improve the accuracy and
+              usefulness of this work.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              My intention is simple: To serve the Qur’an, to make its study
+              easier, and to help others reflect upon its guidance.
+            </p>
+            <div style="height: 16px"></div>
+            <p>May Allah accept this effort and make it beneficial.</p>
+          </div>
+          <div class="ayat">
+            <b>Contact Information</b>
+
+            <p>
+                Email:
+              <a
+                href="mailto:iamtalhamahamud@gmail.com?subject=Feedback&body=I wanted to share..."
+              >
+                iamtalhamahamud@gmail.com
+              </a>
+              <div style="height: 5px"></div>
+              or,
+              <div style="height: 5px"></div> 
+              visit my Linktree:
+              <a href="https://linktr.ee/talhamahamud" target="_blank"
+                >linktr.ee/talhamahamud</a
+              >
+            </p>
+          </div>
+        </article>
+      </section>
+      <!-- --------------------------------------------------------------------------------------------------------->
+      <!---------------------------------------------------------------------------------->
+    </main>
+
+    <script>
+      function toggleMenu() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("open");
+      }
+
+      // Close menu when clicking on a link in mobile view
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 815) {
+            document.getElementById("navbar").classList.remove("open");
+          }
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        const navbar = document.getElementById("navbar");
+        const menuIcon = document.querySelector(".menu-icon");
+        if (
+          window.innerWidth <= 815 &&
+          !navbar.contains(e.target) &&
+          !menuIcon.contains(e.target)
+        ) {
+          navbar.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/koran.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="pagestyles.css" />
+    <title>বিষয় ভিত্তিক আয়াত</title>
+  </head>
+  <body>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navbar">
+      <header>বিষয় ভিত্তিক আয়াত</header>
+      <div class="subheader">
+        <a href="/about.html">About</a>
+      </div>
+      <ul>
+        <li><a class="link" href="/index.html">জান্নাতের বর্ননা</a></li>
+        <li>
+          <a class="link" href="jhannam.html">জাহান্নামের বর্ণনা</a>
+        </li>
+        <li class="veg">
+          <a class="link" href="mumin.html">মুমিনদের বৈশিষ্ট্য</a>
+        </li>
+        <li><a class="link" href="ashar-bani.html">আশার বানী</a></li>
+        <li>
+          <a class="link" href="voy-siristhikari-ayat.html">ভয় সৃষ্টিকারী আয়াত</a>
+        </li>
+        <li><a class="link" href="adam.html">আদাম(আ:) </a></li>
+        <li><a class="link" href="lut.html">লূত(আঃ)</a></li>
+        <li><a class="link" href="jakaria.html">যাকারিয়া(আঃ) </a></li>
+        <li><a class="link" href="maryam.html">মারয়াম(আঃ)</a></li>
+        <li><a class="link" href="ibrahim.html">ইব্রাহিম(আঃ)</a></li>
+        <li><a class="link" href="musa.html">মূসা(আ:)</a></li>
+        <li><a class="link" href="dua.html">দোয়া</a></li>
+        <li><a class="link" href="nuh.html">নূহ(আঃ)</a></li>
+        <li><a class="link" href="nuh.html">উপদেশ</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <!-------------------------------------------copy this------------------------------------------------------->
+      <section class="main-section" id="Introduction">
+        <header>(২৩) আল মুমিনূন</header>
+        <article>
+          <div class="ayat">
+            (১) নিশ্চিতভাবে সফলকাম হয়েছে মু’মিনর (২) যারাঃ নিজেদে নামাযে বিনয়াবন
+            হয়, (৩) বাজে কাজ থেকে দূরে থাকে (৪) যাকাতের পথে সক্রিয় থাকে (৫)
+            নিজেদের লজ্জা-স্থানের হেফাজত করে (৬) নিজেদের স্ত্রীদের ও অধিকারভুক্ত
+            বাঁদিদের ছাড়া, এদের কাছে (হেফাজত না করলে) তারা তিরস্কৃত হবে না, (৭)
+            তবে যারা এর বাইরে আরও কিছু চাইবে তারাই হবে সীমালংঘনকারী, (৮) নিজেদের
+            আমানত ও প্রতিশ্রুতি রক্ষা করে (৯) এবং নিজেদের নামায গুলো
+            রক্ষণাবেক্ষণ করে, (১০) তারাই এমন ধরনের উত্তরাধিকারী যারা নিজেদের
+            উত্তরাধিকার হিসেবে ফিরদাউস, লাভ করব
+          </div>
+        </article>
+      </section>
+      <!-- --------------------------------------------------------------------------------------------------------->
+      <!-- --------------------------------------------------------------------------------------------------------->
+
+      <!---------------------------------------------------------------------------------->
+    </main>
+
+    <script>
+      function toggleMenu() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("open");
+      }
+
+      // Close menu when clicking on a link in mobile view
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 815) {
+            document.getElementById("navbar").classList.remove("open");
+          }
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        const navbar = document.getElementById("navbar");
+        const menuIcon = document.querySelector(".menu-icon");
+        if (
+          window.innerWidth <= 815 &&
+          !navbar.contains(e.target) &&
+          !menuIcon.contains(e.target)
+        ) {
+          navbar.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>
