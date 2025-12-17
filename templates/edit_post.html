@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Post{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+<section class="main-section">
+    <header>Edit Post</header>
+    <article>
+        <div class="form-card">
+            <form method="POST" action="">
+                <div style="margin-bottom: 15px;">
+                    <label for="title">Title (Subject Name):</label><br>
+                    <input type="text" name="title" id="title" value="{{ post.title }}" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="slug">Slug (URL friendly name):</label><br>
+                    <input type="text" name="slug" id="slug" value="{{ post.slug }}" style="width: 100%; padding: 8px; margin-top: 5px;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="content">Content:</label><br>
+                    <textarea name="content" id="content" rows="8" style="width: 100%; padding: 8px; margin-top: 5px;">{{ post.content }}</textarea>
+                </div>
+                
+                <button type="submit" style="padding: 10px 20px; background-color: #4d4e53; color: white; border: none; cursor: pointer;">Update Post</button>
+            </form>
+        </div>
+    </article>
+</section>
+
+<script>
+    var simplemde = new SimpleMDE({ 
+        element: document.getElementById("content"),
+        spellChecker: false,
+        status: false,
+        initialValue: `{{ post.content | safe }}`,
+        toolbar: [
+            "bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|",
+            {
+                name: "ayat",
+                action: function customFunction(editor){
+                    var cm = editor.codemirror;
+                    var selection = cm.getSelection();
+                    cm.replaceSelection('<div class="ayat">\n' + selection + '\n</div>');
+                },
+                className: "fa fa-star",
+                title: "Ayat Style",
+            },
+            "guide"
+        ]
+    });
+</script>
+{% endblock %}

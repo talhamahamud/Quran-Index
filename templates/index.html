@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="main-section" id="index-page">
+    <header style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
+        {{ page.title }}
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('edit_page', slug='index') }}" style="font-size: 0.5em; text-decoration: none; color: #007bff; margin-left: 10px;">[Edit]</a>
+        {% endif %}
+    </header>
+    <article>
+        {{ page.content | markdown | safe }}
+    </article>
+</section>
+{% endblock %}

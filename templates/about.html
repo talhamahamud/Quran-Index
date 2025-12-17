@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}About - বিষয় ভিত্তিক আয়াত{% endblock %}
+
+{% block content %}
+      <section class="main-section" id="Introduction">
+        <header>About This Project</header>
+        <article>
+          <div class="about-content">
+            <p>
+              This website was born from a personal journey of reading and
+              reflecting on the Qur’an.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              While studying <i>Tafheem-ul-Qur’an</i> (tafsir by Abul A‘la
+              Maududi), I often felt the need to see Qur’anic verses organized
+              subject-wise across different surahs. Many themes—such as Jannat,
+              about the prophets, guidance, warnings, and mercy etc.—appear
+              throughout the Qur’an, but finding them together in one place can
+              be difficult for readers.
+            </p>
+            <div style="height: 16px"></div>
+            <p>From this need, the idea for this project came to my mind.</p>
+            <div style="height: 16px"></div>
+            <p>
+              I began carefully listing Qur’anic ayat by subject, while also
+              keeping them connected to their respective surahs, so that readers
+              can navigate easily and reflect more deeply on each topic. This
+              project is meant to help students, researchers, and general
+              readers engage with the Qur’an in a more structured and meaningful
+              way.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              This is a continuous and evolving effort, and I am fully aware
+              that mistakes or limitations may exist. If you notice any error,
+              misclassification, or have suggestions for improvement, I
+              sincerely encourage you to contact me through the provided contact
+              information. Your feedback will help improve the accuracy and
+              usefulness of this work.
+            </p>
+            <div style="height: 16px"></div>
+            <p>
+              My intention is simple: To serve the Qur’an, to make its study
+              easier, and to help others reflect upon its guidance.
+            </p>
+            <div style="height: 16px"></div>
+            <p>May Allah accept this effort and make it beneficial.</p>
+          </div>
+          <div class="about-content">
+            <b>Contact Information</b>
+
+            <p>
+                Email:
+              <a
+                href="mailto:iamtalhamahamud@gmail.com?subject=Feedback&body=I wanted to share..."
+              >
+                iamtalhamahamud@gmail.com
+              </a>
+              <div style="height: 5px"></div>
+              or,
+              <div style="height: 5px"></div> 
+              visit my Linktree:
+              <a href="https://linktr.ee/talhamahamud" target="_blank"
+                >linktr.ee/talhamahamud</a
+              >
+            </p>
+          </div>
+
+          <!-- Admin Login Link -->
+          <div style="text-align: center; margin-top: 30px; font-size: 0.8em; color: #ccc;">
+            <a href="{{ url_for('login') }}" style="color: #ccc; text-decoration: none;">Admin Login</a>
+          </div>
+
+        </article>
+      </section>
+{% endblock %}

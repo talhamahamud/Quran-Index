@@ -8,7 +8,8 @@ body {
     /* font-family: 'Open Sans', Arial, sans-serif; */
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
     /* line-height: 1.5; */
-    font-weight: 400;   /* Regular */
+    font-weight: 400;
+    /* Regular */
     /* font-size: 21px; */
     line-height: 1.8;
     color: #4d4e53;
@@ -131,25 +132,36 @@ section li {
 }
 
 .ayat {
-
     display: block;
     text-align: left;
-    white-space: pre-line;
     position: relative;
-    word-break: normal;
-    word-wrap: normal;
     line-height: 2;
     background-color: #f7f7f7;
     padding: 15px;
     margin: 10px auto;
     border-radius: 5px;
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
-    /* line-height: 1.5; */
-    font-weight: 400; 
+    font-weight: 400;
     width: 90%;
-    white-space: pre-line;
-    white-space: normal;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
     font-size: 21px;
+}
+
+.about-content {
+    display: block;
+    text-align: left;
+    position: relative;
+    line-height: 2;
+    background-color: #f7f7f7;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 5px;
+    font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
+    font-weight: 400;
+    width: 90%;
+    overflow-wrap: break-word;
+    font-size: 16px;
 }
 
 .veg {
@@ -215,4 +227,36 @@ section li {
         padding-right: 45px;
         min-width: 233px;
     }
+}
+
+/* Alert Styles */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-card {
+    display: block;
+    text-align: left;
+    position: relative;
+    background-color: #f7f7f7;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 5px;
+    width: 90%;
+    white-space: normal;
+    line-height: normal;
+}
+
+#index-page article {
+    font-size: 21px;
+    line-height: 2;
+    font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
 }

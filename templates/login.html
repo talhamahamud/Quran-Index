@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login{% endblock %}
+
+{% block content %}
+<section class="main-section">
+    <header>Admin Login</header>
+    <article>
+        <div class="form-card">
+            <form method="POST" action="{{ url_for('login') }}">
+                <div style="margin-bottom: 15px;">
+                    <label for="username">Username:</label><br>
+                    <input type="text" name="username" id="username" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="password">Password:</label><br>
+                    <input type="password" name="password" id="password" style="width: 100%; padding: 8px; margin-top: 5px;" required>
+                </div>
+                <button type="submit" style="padding: 10px 20px; background-color: #4d4e53; color: white; border: none; cursor: pointer;">Login</button>
+            </form>
+        </div>
+    </article>
+</section>
+{% endblock %}
