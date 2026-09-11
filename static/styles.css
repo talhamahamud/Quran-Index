@@ -5,14 +5,11 @@
 }
 
 body {
-    /* font-family: 'Open Sans', Arial, sans-serif; */
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
-    /* line-height: 1.5; */
     font-weight: 400;
-    /* Regular */
-    /* font-size: 21px; */
     line-height: 1.8;
     color: #4d4e53;
+    background-color: #fff;
 }
 
 #navbar {
@@ -27,36 +24,55 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    z-index: 100;
 }
 
 #navbar header {
     color: black;
     margin: 10px;
     text-align: center;
-    font-size: 1.8em;
+    font-size: 30px;
     font-weight: normal;
     padding: 10px 0 0 0;
     background-color: #fff;
     flex-shrink: 0;
-    font-size: 30px;
+}
+
+#navbar header a.brand-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+#navbar header a.brand-link:hover {
+    color: #111;
 }
 
 .menu-icon {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 10px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
+    padding: 8px 10px;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.menu-icon:hover {
+    background-color: #f5f5f5;
 }
 
 .menu-icon span {
-    width: 25px;
+    width: 24px;
     height: 3px;
     background-color: #333;
-    margin: 3px 0;
+    margin: 2px 0;
+    border-radius: 2px;
     transition: 0.3s;
 }
 
@@ -70,14 +86,17 @@ body {
 }
 
 #navbar .subheader a {
-    color: #999;
+    color: #888;
     text-decoration: none;
-    padding: 0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    transition: color 0.2s, background-color 0.2s;
 }
 
-#navbar .subheader a:hover {
-    color: #666;
-    background-color: transparent;
+#navbar .subheader a:hover,
+#navbar .subheader a.active {
+    color: #333;
+    background-color: #eee;
 }
 
 #navbar ul {
@@ -89,29 +108,32 @@ body {
 
 #navbar li {
     color: #4d4e53;
-    border-top: 1px solid;
+    border-top: 1px solid #eee;
     list-style: none;
     position: relative;
     width: 100%;
 }
 
-#navbar a {
+#navbar a.link {
     display: block;
     padding: 10px 30px;
     color: #4d4e53;
     text-decoration: none;
     cursor: pointer;
+    transition: background-color 0.15s ease;
 }
 
-#navbar a:hover {
+#navbar a.link:hover {
     background-color: #edecec;
 }
 
 #main-doc {
     position: absolute;
     margin-left: 310px;
-    padding: 20px;
-    margin-bottom: 110px;
+    padding: 20px 30px;
+    margin-bottom: 60px;
+    max-width: 960px;
+    width: calc(100% - 330px);
 }
 
 #main-doc header {
@@ -137,15 +159,25 @@ section li {
     position: relative;
     line-height: 2;
     background-color: #f7f7f7;
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 5px;
+    padding: 18px 20px;
+    margin: 15px auto;
+    border-radius: 6px;
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
     font-weight: 400;
-    width: 90%;
+    width: 95%;
+    max-width: 850px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     font-size: 21px;
+    border: 1px solid #eee;
+}
+
+.ayat p {
+    margin: 0 0 10px 0;
+}
+
+.ayat p:last-child {
+    margin-bottom: 0;
 }
 
 .about-content {
@@ -154,18 +186,40 @@ section li {
     position: relative;
     line-height: 2;
     background-color: #f7f7f7;
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 5px;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 6px;
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
     font-weight: 400;
-    width: 90%;
+    width: 95%;
+    max-width: 850px;
     overflow-wrap: break-word;
-    font-size: 16px;
+    font-size: 17px;
+    border: 1px solid #eee;
 }
 
 .veg {
     background-color: #edecec;
+    font-weight: bold;
+}
+
+/* Backdrop Overlay for Mobile Navigation */
+#sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#sidebar-overlay.open {
+    display: block;
+    opacity: 1;
 }
 
 @media only screen and (max-width: 815px) {
@@ -180,12 +234,13 @@ section li {
         left: -100%;
         padding: 0;
         margin: 0;
-        width: 250px;
+        width: 270px;
         height: 100%;
         border-right: 2px solid rgba(0, 22, 22, 0.4);
-        z-index: 99;
+        z-index: 100;
         transition: left 0.3s ease;
         overflow: hidden;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     #navbar.open {
@@ -195,7 +250,7 @@ section li {
     #navbar header {
         cursor: default;
         border-bottom: 1px solid #ddd;
-        padding: 20px 0;
+        padding: 20px 0 10px 0;
     }
 
     #navbar .subheader {
@@ -210,22 +265,38 @@ section li {
     #main-doc {
         position: relative;
         margin-left: 0;
-        margin-top: 20px;
+        margin-top: 10px;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .ayat, .about-content {
+        width: 100%;
+        padding: 15px;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) {
     #main-doc {
-        margin-left: -10px;
+        margin-left: 0;
+        padding: 12px 10px;
     }
 
-    code {
-        margin-left: -20px;
-        width: 100%;
-        padding: 15px;
-        padding-left: 10px;
-        padding-right: 45px;
-        min-width: 233px;
+    #main-doc header {
+        font-size: 1.5em;
+    }
+
+    .ayat {
+        font-size: 19px;
+        line-height: 1.9;
+        padding: 12px;
+        margin: 12px 0;
+    }
+
+    .about-content {
+        font-size: 16px;
+        padding: 14px;
+        margin: 12px 0;
     }
 }
 
@@ -242,19 +313,6 @@ section li {
     border: 1px solid #f5c6cb;
 }
 
-.form-card {
-    display: block;
-    text-align: left;
-    position: relative;
-    background-color: #f7f7f7;
-    padding: 15px;
-    margin: 10px auto;
-    border-radius: 5px;
-    width: 90%;
-    white-space: normal;
-    line-height: normal;
-}
-
 #index-page article,
 #content-section article {
     font-size: 21px;
@@ -266,10 +324,10 @@ section li {
 #content-section article h1,
 #content-section article h2,
 #content-section article h3 {
-    font-size: 1.1em;
+    font-size: 1.15em;
     font-weight: normal;
-    margin: 20px 0 5px 0;
-    color: #4d4e53;
+    margin: 24px 0 8px 0;
+    color: #333;
     border-bottom: 1px solid #eee;
-    padding-bottom: 4px;
-}
+    padding-bottom: 6px;
+}
