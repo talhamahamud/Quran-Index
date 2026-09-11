@@ -134,7 +134,10 @@ section li {
 .ayat {
     display: block;
     text-align: left;
+    white-space: pre-line;
     position: relative;
+    word-break: normal;
+    word-wrap: normal;
     line-height: 2;
     background-color: #f7f7f7;
     padding: 15px;
@@ -143,8 +146,7 @@ section li {
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
     font-weight: 400;
     width: 90%;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
+    white-space: normal;
     font-size: 21px;
 }
 
