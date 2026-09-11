@@ -255,8 +255,21 @@ section li {
     line-height: normal;
 }
 
-#index-page article {
+#index-page article,
+#content-section article {
     font-size: 21px;
     line-height: 2;
     font-family: 'Tiro Bangla', 'Noto Sans Bengali', sans-serif;
+}
+
+/* Markdown rendered headings inside content */
+#content-section article h1,
+#content-section article h2,
+#content-section article h3 {
+    font-size: 1.1em;
+    font-weight: normal;
+    margin: 20px 0 5px 0;
+    color: #4d4e53;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
 }

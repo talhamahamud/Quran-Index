@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="static/koran.png" />
+
+    <!-- SEO -->
+    <meta name="description" content="কুরআনের আয়াতগুলোকে বিষয়ভিত্তিক ও সূরা অনুযায়ী সাজানো একটি সহজ সংগ্রহ।" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="বিষয় ভিত্তিক আয়াত" />
+    <meta property="og:description" content="কুরআনের আয়াতগুলোকে বিষয়ভিত্তিক ও সূরা অনুযায়ী সাজানো একটি সহজ সংগ্রহ।" />
+    <meta property="og:image" content="static/koran.png" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bangla Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="static/styles.css" />
+    <title>বিষয় ভিত্তিক আয়াত</title>
+  </head>
+  <body>
+    <div class="menu-icon" onclick="toggleMenu()" id="menu-icon-btn" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="navbar">
+      <header>বিষয় ভিত্তিক আয়াত</header>
+      <div class="subheader">
+        <a href="about.html">About</a>
+      </div>
+      <ul id="nav-list">
+        <!-- Dynamically populated by app.js -->
+        <li><a class="link" href="#">লোড হচ্ছে...</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <section class="main-section" id="content-section">
+        <header id="page-title" style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
+          <!-- Title inserted by JS -->
+        </header>
+        <article id="page-content">
+          <!-- Markdown rendered here by JS -->
+          <p style="color: #999; font-size: 0.9em;">লোড হচ্ছে...</p>
+        </article>
+      </section>
+    </main>
+
+    <!-- marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="static/app.js"></script>
+  </body>
+</html>
