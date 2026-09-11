@@ -5,85 +5,8 @@
  * - Loading sidebar nav from category/index.json
  * - Hash-based routing (e.g. #jannat, #adam)
  * - Fetching and rendering .md files from category/
- * - Auto-wrapping paragraph content under ## headings with .ayat styling
  * - Mobile menu toggle & sidebar scroll persistence
  */
-
-// ─── Auto-Ayat Styling ────────────────────────────────────────────────────────
-
-/**
- * After markdown is rendered, automatically wraps the paragraph content
- * that sits below each ## (h2) heading inside a <div class="ayat">.
- *
- * This means you NEVER need to write <div class="ayat"> in your .md files.
- * Just write your text under a ## heading and it will be styled automatically.
- *
- * Existing <div class="ayat"> tags in old files are also preserved correctly.
- *
- * @param {HTMLElement} container - The article element containing rendered HTML
- */
-function applyAyatStyling(container) {
-  // Get all top-level children as a static array (we'll be restructuring the DOM)
-  const children = Array.from(container.childNodes);
-
-  // We'll rebuild the container's content
-  container.innerHTML = '';
-
-  let currentGroup = null; // current <div class="ayat"> being built
-
-  children.forEach(node => {
-    // Check if this is an h1, h2, or h3 heading (## in markdown)
-    const isHeading = node.nodeType === Node.ELEMENT_NODE &&
-      ['H1', 'H2', 'H3'].includes(node.tagName);
-
-    // Check if this is already an .ayat div (from old-style files)
-    const isAyatDiv = node.nodeType === Node.ELEMENT_NODE &&
-      node.tagName === 'DIV' && node.classList.contains('ayat');
-
-    // Check if this is a purely whitespace text node — skip
-    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === '') {
-      return;
-    }
-
-    if (isHeading) {
-      // Flush any open group — close previous ayat div before new heading
-      if (currentGroup && currentGroup.innerHTML.trim() !== '') {
-        container.appendChild(currentGroup);
-      }
-      currentGroup = null;
-
-      // Add the heading itself
-      container.appendChild(node.cloneNode(true));
-
-      // Start a new ayat div for content after this heading
-      currentGroup = document.createElement('div');
-      currentGroup.className = 'ayat';
-
-    } else if (isAyatDiv) {
-      // Already wrapped — flush any current group, then add this as-is
-      if (currentGroup && currentGroup.innerHTML.trim() !== '') {
-        container.appendChild(currentGroup);
-      }
-      currentGroup = null;
-      container.appendChild(node.cloneNode(true));
-
-    } else {
-      // Regular content (p, ul, ol, blockquote, text, etc.)
-      if (currentGroup) {
-        // We're inside a ## section — add to the ayat div
-        currentGroup.appendChild(node.cloneNode(true));
-      } else {
-        // Content before any ## heading (e.g. intro paragraph)
-        container.appendChild(node.cloneNode(true));
-      }
-    }
-  });
-
-  // Flush any remaining open group at end of file
-  if (currentGroup && currentGroup.innerHTML.trim() !== '') {
-    container.appendChild(currentGroup);
-  }
-}
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -117,10 +40,7 @@ function loadSidebar(activeSlug) {
         // Close mobile menu on link click
         a.addEventListener('click', () => {
           if (window.innerWidth <= 815) {
-            const navbar = document.getElementById('navbar');
-            const overlay = document.getElementById('sidebar-overlay');
-            if (navbar) navbar.classList.remove('open');
-            if (overlay) overlay.classList.remove('open');
+            document.getElementById('navbar').classList.remove('open');
           }
         });
 
@@ -167,13 +87,12 @@ function loadCategory(slug, title) {
         // Configure marked to allow HTML passthrough (for <div class="ayat"> etc.)
         marked.setOptions({ breaks: true });
         contentEl.innerHTML = marked.parse(mdText);
-
-        // Auto-wrap content under ## headings with .ayat styling
-        applyAyatStyling(contentEl);
       }
       if (titleEl) titleEl.textContent = title || slug;
 
       // Scroll main content to top
+      const mainDoc = document.getElementById('main-doc');
+      if (mainDoc) mainDoc.scrollTop = 0;
       window.scrollTo(0, 0);
     })
     .catch(err => {
@@ -230,16 +149,13 @@ function routeToSlug(hash, categories) {
 
 function toggleMenu() {
   const navbar = document.getElementById('navbar');
-  const overlay = document.getElementById('sidebar-overlay');
   if (navbar) navbar.classList.toggle('open');
-  if (overlay) overlay.classList.toggle('open');
 }
 
 // Close menu when clicking outside
 document.addEventListener('click', e => {
   const navbar = document.getElementById('navbar');
   const menuIcon = document.querySelector('.menu-icon');
-  const overlay = document.getElementById('sidebar-overlay');
   if (
     window.innerWidth <= 815 &&
     navbar &&
@@ -248,7 +164,6 @@ document.addEventListener('click', e => {
     !menuIcon.contains(e.target)
   ) {
     navbar.classList.remove('open');
-    if (overlay) overlay.classList.remove('open');
   }
 });
 
