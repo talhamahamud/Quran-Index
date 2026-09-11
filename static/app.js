@@ -60,6 +60,62 @@ function loadSidebar(activeSlug) {
     });
 }
 
+// ─── Auto-Ayat Styling ────────────────────────────────────────────────────────
+
+/**
+ * After markdown is rendered, automatically wraps the paragraph content
+ * that sits below each ## (h2) heading inside a <div class="ayat">.
+ *
+ * This means you NEVER need to write <div class="ayat"> in your .md files.
+ * Just write your text under a ## heading and it will be styled automatically.
+ *
+ * @param {HTMLElement} container - The article element containing rendered HTML
+ */
+function applyAyatStyling(container) {
+  const children = Array.from(container.childNodes);
+  container.innerHTML = '';
+
+  let currentGroup = null;
+
+  children.forEach(node => {
+    const isHeading = node.nodeType === Node.ELEMENT_NODE &&
+      ['H1', 'H2', 'H3'].includes(node.tagName);
+
+    const isAyatDiv = node.nodeType === Node.ELEMENT_NODE &&
+      node.tagName === 'DIV' && node.classList.contains('ayat');
+
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === '') {
+      return;
+    }
+
+    if (isHeading) {
+      if (currentGroup && currentGroup.innerHTML.trim() !== '') {
+        container.appendChild(currentGroup);
+      }
+      currentGroup = null;
+      container.appendChild(node.cloneNode(true));
+      currentGroup = document.createElement('div');
+      currentGroup.className = 'ayat';
+    } else if (isAyatDiv) {
+      if (currentGroup && currentGroup.innerHTML.trim() !== '') {
+        container.appendChild(currentGroup);
+      }
+      currentGroup = null;
+      container.appendChild(node.cloneNode(true));
+    } else {
+      if (currentGroup) {
+        currentGroup.appendChild(node.cloneNode(true));
+      } else {
+        container.appendChild(node.cloneNode(true));
+      }
+    }
+  });
+
+  if (currentGroup && currentGroup.innerHTML.trim() !== '') {
+    container.appendChild(currentGroup);
+  }
+}
+
 // ─── Markdown Content ─────────────────────────────────────────────────────────
 
 /**
@@ -84,9 +140,10 @@ function loadCategory(slug, title) {
     })
     .then(mdText => {
       if (contentEl) {
-        // Configure marked to allow HTML passthrough (for <div class="ayat"> etc.)
         marked.setOptions({ breaks: true });
         contentEl.innerHTML = marked.parse(mdText);
+        // Auto-wrap content under headings with .ayat styling
+        applyAyatStyling(contentEl);
       }
       if (titleEl) titleEl.textContent = title || slug;
 
@@ -102,6 +159,7 @@ function loadCategory(slug, title) {
       }
     });
 }
+
 
 // ─── Routing ──────────────────────────────────────────────────────────────────
 
